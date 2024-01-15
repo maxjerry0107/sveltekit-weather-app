@@ -12,25 +12,38 @@
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
+		"@svelte-put/shortcut": "^3.1.0",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"@tailwindcss/aspect-ratio": "^0.4.2",
 		"@types/eslint": "8.56.0",
 		"@typescript-eslint/eslint-plugin": "^6.0.0",
 		"@typescript-eslint/parser": "^6.0.0",
 		"autoprefixer": "^10.4.16",
+		"clsx": "^2.1.0",
 		"eslint": "^8.56.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.35.1",
 		"postcss": "^8.4.33",
 		"prettier": "^3.1.1",
 		"prettier-plugin-svelte": "^3.1.2",
+		"prettier-plugin-tailwindcss": "^0.5.6",
 		"svelte": "^4.2.7",
+		"svelte-awesome-icons": "^0.6.6",
 		"svelte-check": "^3.6.0",
+		"svelte-transition": "^0.0.10",
+		"tailwind-merge": "^1.14.0",
+		"tailwind-scrollbar-hide": "^1.1.7",
 		"tailwindcss": "^3.4.1",
+		"tailwindcss-animate": "^1.0.7",
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
 		"vite": "^5.0.3"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"svelte-headlessui": "^0.0.33",
+		"svelte-themes": "^1.0.10"
+	}
 }
