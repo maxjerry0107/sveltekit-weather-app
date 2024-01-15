@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { PUBLIC_GOOGLE_MAP_API_KEY } from '$env/static/public';
 	import { buttonClass, buttonSizes, buttonVariants, DEFAULT_SUGGESTIONS } from '$lib/constants';
 	import { selectedCity } from '$lib/store';
 	import { cn, loadGooglePlacesLibrary } from '$lib/utils';
@@ -45,7 +46,7 @@
 	}, 300);
 
 	onMount(() => {
-		loadGooglePlacesLibrary('AIzaSyDhQZb28GoK7K8Q1aix3avfNAJMg6A-Sms', async () => {
+		loadGooglePlacesLibrary(PUBLIC_GOOGLE_MAP_API_KEY, async () => {
 			const { AutocompleteService } = await google.maps.importLibrary('places');
 			autocomplete = new AutocompleteService();
 			googleLibraryLoaded = true;
