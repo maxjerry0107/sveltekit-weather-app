@@ -2,7 +2,6 @@
 	import { goto } from '$app/navigation';
 	import { PUBLIC_GOOGLE_MAP_API_KEY } from '$env/static/public';
 	import { buttonClass, buttonSizes, buttonVariants, DEFAULT_SUGGESTIONS } from '$lib/constants';
-	import { selectedCity } from '$lib/store';
 	import { cn, loadGooglePlacesLibrary } from '$lib/utils';
 	import { shortcut, type ShortcutEventDetail } from '@svelte-put/shortcut';
 	import debounce from 'lodash.debounce';
@@ -54,23 +53,11 @@
 	});
 
 	const onSelectCity = async (city: string) => {
-		const geocoder = new google.maps.Geocoder();
-		geocoder
-			.geocode({ address: city })
-			.then(({ results }: { results: google.maps.GeocoderResult[] }) => {
-				const lat = results[0].geometry.location.lat().toString();
-				const lng = results[0].geometry.location.lng().toString();
-				selectedCity.set({
-					lat,
-					lng,
-					city
-				});
-				goto(`/search?lat=${lat}&lon=${lng}`);
-			});
 		searchRef.value = '';
 		searchStr = '';
 		suggestions = [];
 		dialog.close();
+		goto(`/${city}`);
 	};
 </script>
 

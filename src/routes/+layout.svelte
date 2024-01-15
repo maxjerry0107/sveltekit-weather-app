@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import Header from '$lib/components/Header.svelte';
-	import { selectedCity } from '$lib/store';
 	import { CodeSolid, HeartRegular } from 'svelte-awesome-icons';
 	import { MetaTags } from 'svelte-meta-tags';
 	import SvelteTheme from 'svelte-themes/SvelteTheme.svelte';
@@ -8,8 +8,8 @@
 </script>
 
 <MetaTags
-	title={`${$selectedCity.city} - Weather Forecast`}
-	description={`${$selectedCity.city} weather forecast with current conditions, wind, air quality, and what to expect for the next 3 days.`}
+	title={`${$page.data.city} - Weather Forecast`}
+	description={`${$page.data.city} weather forecast with current conditions, wind, air quality, and what to expect for the next 3 days.`}
 />
 
 <SvelteTheme attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange />
