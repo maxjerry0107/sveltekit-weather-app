@@ -1,15 +1,18 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import Header from '$lib/components/Header.svelte';
+	import { ProgressBar } from '@prgm/sveltekit-progress-bar';
 	import { CodeSolid, HeartRegular } from 'svelte-awesome-icons';
 	import { MetaTags } from 'svelte-meta-tags';
 	import SvelteTheme from 'svelte-themes/SvelteTheme.svelte';
 	import '../app.css';
+	$: location = $page.data.location;
 </script>
 
+<ProgressBar class="text-gray-600" />
 <MetaTags
-	title={`${$page.data.city} - Weather Forecast`}
-	description={`${$page.data.city} weather forecast with current conditions, wind, air quality, and what to expect for the next 3 days.`}
+	title={`${location.name} - Weather Forecast`}
+	description={`${location.name} weather forecast with current conditions, wind, air quality, and what to expect for the next 3 days.`}
 />
 
 <SvelteTheme attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange />

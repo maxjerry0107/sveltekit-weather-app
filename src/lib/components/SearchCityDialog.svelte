@@ -149,11 +149,11 @@
 								{#each DEFAULT_SUGGESTIONS as suggestion}
 									<button
 										on:click={() => {
-											onSelectCity(suggestion.description);
+											onSelectCity(suggestion);
 										}}
 										class="relative flex w-full cursor-pointer select-none items-center rounded-sm px-2 py-3 text-sm outline-none hover:bg-accent hover:text-accent-foreground"
 									>
-										{suggestion.description}
+										{suggestion}
 									</button>
 								{/each}
 							</div>

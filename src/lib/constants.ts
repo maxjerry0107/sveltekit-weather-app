@@ -17,25 +17,14 @@ export const buttonSizes = {
   icon: 'h-10 w-10'
 };
 
-
 export const DEFAULT_SUGGESTIONS = [
-  {
-    description: "New York, NY, USA",
-  },
-  {
-    description: "London, United Kingdom",
-  },
-  {
-    description: "Paris, France",
-  },
-  {
-    description: "Sydney NSW, Australia",
-  },
-  {
-    description: "Tokyo, Japan",
-  },
-]
+  'New York, NY, USA',
+  'London, United Kingdom',
+  'Paris, France',
+  'Sydney NSW, Australia',
+  'Tokyo, Japan'
+];
 
-export const DEFAULT_LOCATION = {
-  lat: '40.0931191', lng: '-83.017962', city: 'Worthington, OH, USA'
-}
+export const DEFAULT_LOCATION = 'Worthington, OH, USA';
+
+export const WEATHER_API_URL = 'http://api.weatherapi.com/v1/';

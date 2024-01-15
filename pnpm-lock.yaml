@@ -19,6 +19,9 @@ dependencies:
     version: 1.0.10
 
 devDependencies:
+  '@prgm/sveltekit-progress-bar':
+    specifier: ^2.0.0
+    version: 2.0.0(@sveltejs/kit@2.3.2)(svelte@4.2.8)
   '@svelte-put/shortcut':
     specifier: ^3.1.0
     version: 3.1.0
@@ -466,6 +469,17 @@ packages:
 
   /@polka/url@1.0.0-next.24:
     resolution: {integrity: sha512-2LuNTFBIO0m7kKIQvvPHN6UE63VjpmL9rnEEaOOaiSPbZK+zUOYIzBAWcED+3XYzhYsd/0mD57VdxAEqqV52CQ==}
+    dev: true
+
+  /@prgm/sveltekit-progress-bar@2.0.0(@sveltejs/kit@2.3.2)(svelte@4.2.8):
+    resolution: {integrity: sha512-N9SlYDfpqaY9MyG85Wk38R9/BipIUdTJ4U7LVPY5cFn5cwGZrVA1lsXC3I2kmGtwz+DF6v/DvySkYOWCPmJV4A==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@sveltejs/kit': ^2.0.0
+      svelte: ^4.0.0
+    dependencies:
+      '@sveltejs/kit': 2.3.2(@sveltejs/vite-plugin-svelte@3.0.1)(svelte@4.2.8)(vite@5.0.11)
+      svelte: 4.2.8
     dev: true
 
   /@rollup/rollup-android-arm-eabi@4.9.5:
