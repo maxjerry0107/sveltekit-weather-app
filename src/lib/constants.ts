@@ -16,3 +16,26 @@ export const buttonSizes = {
   lg: 'h-11 rounded-md px-8',
   icon: 'h-10 w-10'
 };
+
+
+export const DEFAULT_SUGGESTIONS = [
+  {
+    description: "New York, NY, USA",
+  },
+  {
+    description: "London, United Kingdom",
+  },
+  {
+    description: "Paris, France",
+  },
+  {
+    description: "Sydney NSW, Australia",
+  },
+  {
+    description: "Tokyo, Japan",
+  },
+]
+
+export const DEFAULT_LOCATION = {
+  lat: '40.0931191', lng: '-83.017962', city: 'Worthington, OH, USA'
+}
