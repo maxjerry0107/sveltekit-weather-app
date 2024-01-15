@@ -1,9 +1,16 @@
 <script lang="ts">
 	import Header from '$lib/components/Header.svelte';
+	import { selectedCity } from '$lib/store';
 	import { CodeSolid, HeartRegular } from 'svelte-awesome-icons';
+	import { MetaTags } from 'svelte-meta-tags';
 	import SvelteTheme from 'svelte-themes/SvelteTheme.svelte';
 	import '../app.css';
 </script>
+
+<MetaTags
+	title={`${$selectedCity.city} - Weather Forecast`}
+	description={`${$selectedCity.city} weather forecast with current conditions, wind, air quality, and what to expect for the next 3 days.`}
+/>
 
 <SvelteTheme attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange />
 
