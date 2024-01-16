@@ -13,6 +13,7 @@
 	},
 	"devDependencies": {
 		"@prgm/sveltekit-progress-bar": "^2.0.0",
+		"@svelte-put/dragscroll": "^3.0.0",
 		"@svelte-put/shortcut": "^3.1.0",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",

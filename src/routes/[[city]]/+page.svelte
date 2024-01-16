@@ -2,7 +2,9 @@
 	import AirPollution from '$lib/components/AirPollution.svelte';
 	import CurrentWeather from '$lib/components/CurrentWeather.svelte';
 	import FeelsLike from '$lib/components/FeelsLike.svelte';
+	import HourlyForecast from '$lib/components/HourlyForecast.svelte';
 	import Humidity from '$lib/components/Humidity.svelte';
+	import OtherLargeCities from '$lib/components/OtherLargeCities.svelte';
 	import Precipitation from '$lib/components/Precipitation.svelte';
 	import Pressure from '$lib/components/Pressure.svelte';
 	import SunWidget from '$lib/components/SunWidget.svelte';
@@ -34,5 +36,7 @@
 		<Humidity humidity={weather.humidity} />
 		<Visibility visibility={weather.vis_km} />
 		<Pressure pressure={weather.pressure_mb} />
+		<HourlyForecast hourlyData={forecasts[0].hour} />
+		<OtherLargeCities />
 	</section>
 </div>
