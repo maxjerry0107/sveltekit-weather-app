@@ -5,7 +5,7 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ fetch, params }) => {
   const city = params.city || DEFAULT_LOCATION;
-  const res = await fetch(`${WEATHER_API_URL}forecast.json?key=${WEATHER_API_KEY}&q=${city}&days=7&aqi=yes`);
+  const res = await fetch(`${WEATHER_API_URL}forecast.json?key=${WEATHER_API_KEY}&q=${city}&days=10&aqi=yes`);
   const data: Weather = await res.json();
   return {
     current: data.current,

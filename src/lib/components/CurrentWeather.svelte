@@ -7,6 +7,12 @@
 	export let weather: Current;
 	export let location: Location;
 	export let forecast: DayForecast;
+
+	$: temperatureArray = forecast.hour.map((item) => {
+		return item.temp_c;
+	});
+	$: minTemperature = Math.min(...temperatureArray);
+	$: maxTemperature = Math.max(...temperatureArray);
 </script>
 
 <div
@@ -43,15 +49,15 @@
 		</div>
 	</div>
 	<div class="flex justify-center py-7 text-8xl font-bold md:py-10">
-		{Math.round(weather.temp_c)}&deg;
+		{weather.temp_c}&deg;
 	</div>
 	<div>
 		<WeatherIcon weatherCode={weather.condition.code} isDay={weather.is_day} class="h-9 w-9" />
 		<div class="font-semibold">{weather.condition.text}</div>
 
 		<div class="flex gap-2 dark:text-neutral-500">
-			<span>H: {Math.round(forecast.day.maxtemp_c)}&deg;</span>
-			<span>L: {Math.round(forecast.day.mintemp_c)}&deg;</span>
+			<span>H: {maxTemperature}&deg;</span>
+			<span>L: {minTemperature}&deg;</span>
 		</div>
 	</div>
 </div>

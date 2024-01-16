@@ -83,7 +83,7 @@ export interface Forecast {
 }
 
 export interface DayForecast {
-  date: Date;
+  date: string;
   date_epoch: number;
   day: DayWeather;
   astro: Astro;
