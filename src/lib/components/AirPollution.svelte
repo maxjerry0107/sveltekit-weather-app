@@ -3,7 +3,9 @@
 	export let weather: Current;
 	let progress: HTMLDivElement;
 	$: if (progress) {
-		const leftPos = (weather.air_quality['us-epa-index'] || 0) * 10 + 20;
+		const air_quality = weather.air_quality['us-epa-index'] || 1;
+
+		const leftPos = (air_quality - 1) * 15 + 5;
 		progress.style.left = leftPos + '%';
 	}
 </script>

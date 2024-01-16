@@ -48,7 +48,7 @@
 			</i>
 		</div>
 	</div>
-	<div class="flex justify-center py-7 text-8xl font-bold md:py-10">
+	<div class="flex justify-center py-7 text-7xl font-bold md:py-10">
 		{weather.temp_c}&deg;
 	</div>
 	<div>
