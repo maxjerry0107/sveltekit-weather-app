@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { buttonClass, buttonSizes, buttonVariants } from '$lib/constants';
-	import { cn } from '$lib/utils';
 	import type { ShortcutEventDetail } from '@svelte-put/shortcut';
 	import { shortcut } from '@svelte-put/shortcut';
 	import { MoonRegular, SunSolid } from 'svelte-awesome-icons';
@@ -17,7 +15,14 @@
 		if ((keyboardEvent.target as HTMLElement)?.tagName === 'INPUT') {
 			return;
 		}
-		setTheme($themeStore.theme == 'light' ? 'dark' : 'light');
+		let currentTheme = $themeStore.theme;
+		if ($themeStore.theme == 'system' || $themeStore.theme == undefined) {
+			currentTheme =
+				window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+					? 'dark'
+					: 'light';
+		}
+		setTheme(currentTheme == 'light' ? 'dark' : 'light');
 	};
 </script>
 
@@ -32,7 +37,7 @@
 
 <div>
 	<button
-		class={cn(buttonClass, buttonVariants.outline, buttonSizes.icon, 'h-9 shrink-0')}
+		class="inline-flex h-9 w-10 shrink-0 items-center justify-center rounded-md border border-input bg-background text-sm font-medium ring-offset-background transition-colors hover:bg-accent/50 hover:text-accent-foreground focus:ring-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
 		use:menu.button
 		on:select={onSelectTheme}
 	>
@@ -64,7 +69,7 @@
 
 <style lang="postcss">
 	.theme-switcher-container {
-		@apply absolute mt-1 min-w-32 overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md;
+		@apply absolute z-10 mt-1 min-w-32 overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md;
 	}
 
 	.theme-switcher-item {

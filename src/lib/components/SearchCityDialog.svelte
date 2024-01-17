@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { PUBLIC_GOOGLE_MAP_API_KEY } from '$env/static/public';
-	import { buttonClass, buttonSizes, buttonVariants, DEFAULT_SUGGESTIONS } from '$lib/constants';
-	import { cn, loadGooglePlacesLibrary } from '$lib/utils';
+	import { DEFAULT_SUGGESTIONS } from '$lib/constants';
+	import { loadGooglePlacesLibrary } from '$lib/utils';
 	import { shortcut, type ShortcutEventDetail } from '@svelte-put/shortcut';
 	import debounce from 'lodash.debounce';
 	import { onMount } from 'svelte';
@@ -73,12 +73,7 @@
 
 <button
 	on:click={dialog.open}
-	class={cn(
-		buttonClass,
-		buttonVariants.outline,
-		buttonSizes.lg,
-		'h-9 w-full whitespace-nowrap px-4'
-	)}
+	class="inline-flex h-9 w-full items-center justify-center whitespace-nowrap rounded-md border border-input bg-background px-4 text-sm font-medium ring-offset-background transition-colors hover:bg-accent/50 hover:text-accent-foreground focus:ring-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
 >
 	<p class="text-sm text-muted-foreground">
 		Search city...{' '}

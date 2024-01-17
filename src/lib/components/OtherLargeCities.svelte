@@ -7,6 +7,7 @@
 	<div class="flex flex-col space-y-3.5">
 		{#each DEFAULT_SUGGESTIONS as item}
 			<a
+				data-sveltekit-noscroll
 				href={`/${item}`}
 				class="rounded-lg border bg-card px-6 py-4 text-card-foreground shadow-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
 			>

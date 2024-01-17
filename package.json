@@ -21,6 +21,7 @@
 		"@tailwindcss/aspect-ratio": "^0.4.2",
 		"@types/eslint": "8.56.0",
 		"@types/google.maps": "^3.54.10",
+		"@types/mapbox-gl": "^2.7.19",
 		"@typescript-eslint/eslint-plugin": "^6.0.0",
 		"@typescript-eslint/parser": "^6.0.0",
 		"autoprefixer": "^10.4.16",
@@ -49,6 +50,7 @@
 	"dependencies": {
 		"@types/lodash.debounce": "^4.0.9",
 		"lodash.debounce": "^4.0.8",
+		"mapbox-gl": "^3.0.1",
 		"svelte-headlessui": "^0.0.33",
 		"svelte-themes": "^1.0.10"
 	}

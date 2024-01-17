@@ -4,6 +4,7 @@
 	import FeelsLike from '$lib/components/FeelsLike.svelte';
 	import HourlyForecast from '$lib/components/HourlyForecast.svelte';
 	import Humidity from '$lib/components/Humidity.svelte';
+	import Map from '$lib/components/Map.svelte';
 	import OtherLargeCities from '$lib/components/OtherLargeCities.svelte';
 	import Precipitation from '$lib/components/Precipitation.svelte';
 	import Pressure from '$lib/components/Pressure.svelte';
@@ -18,7 +19,6 @@
 	$: location = data.location;
 	$: weather = data.current;
 	$: forecasts = data.forecast.forecastday;
-	$: console.log(data);
 </script>
 
 <div class="flex flex-col gap-4 md:flex-row">
@@ -37,6 +37,7 @@
 		<Visibility visibility={weather.vis_km} />
 		<Pressure pressure={weather.pressure_mb} />
 		<HourlyForecast hourlyData={forecasts[0].hour} />
+		<Map />
 		<OtherLargeCities />
 	</section>
 </div>
