@@ -11,6 +11,7 @@
 	import '../../../node_modules/mapbox-gl/dist/mapbox-gl.css';
 	let map: mapboxgl.Map;
 	let mapContainer: HTMLDivElement;
+	let selectedMapTile: { label: string; code: string } = WEATHER_TILES[0];
 
 	$: if (map) {
 		const mapboxTheme = getMapboxTheme($themeStore.theme);
@@ -33,7 +34,7 @@
 					source: 'weather-source',
 					type: 'raster',
 					paint: {
-						'raster-opacity': 0.4
+						'raster-opacity': 0.6
 					},
 					minzoom: 0,
 					maxzoom: 15
@@ -76,12 +77,11 @@
 	const listbox = createListbox({ label: 'Weather Tiles', selected: WEATHER_TILES[0] });
 
 	const onSelectWeatherTile = (e: Event) => {
-		const weatherTile = (e as CustomEvent).detail.selected;
-
+		selectedMapTile = (e as CustomEvent).detail.selected;
 		map
 			.getSource('weather-source')
 			.setTiles([
-				`https://api.tomorrow.io/v4/map/tile/{z}/{x}/{y}/${weatherTile.code}/now.png?apikey=${PUBLIC_TOMORROW_MAP_API_KEY}`
+				`https://api.tomorrow.io/v4/map/tile/{z}/{x}/{y}/${selectedMapTile.code}/now.png?apikey=${PUBLIC_TOMORROW_MAP_API_KEY}`
 			]);
 	};
 </script>
@@ -89,7 +89,7 @@
 <div
 	class="relative order-11 col-span-2 overflow-hidden overscroll-contain rounded-xl border bg-card p-0 text-card-foreground shadow-sm md:p-0 xl:col-span-3"
 >
-	<div class="absolute right-0 z-10 m-2">
+	<div class="absolute right-0 z-20 m-2">
 		<div class="relative">
 			<button
 				use:listbox.button
@@ -136,7 +136,13 @@
 			</Transition>
 		</div>
 	</div>
-
+	<div class="absolute -bottom-1 right-0 z-10 w-1/2">
+		<img
+			src={`weather-map/${selectedMapTile.code}.png`}
+			alt={selectedMapTile.label}
+			class="w-full"
+		/>
+	</div>
 	<div class="map" bind:this={mapContainer} />
 </div>
 
