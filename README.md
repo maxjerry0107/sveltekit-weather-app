@@ -1,6 +1,6 @@
 # Weather app using sveltekit
 
-![Weather app](https://github.com/maxjerry0107/sveltekit-weather-app/screenshot.png?raw=true)
+![Weather app](https://raw.githubusercontent.com/maxjerry0107/sveltekit-weather-app/main/screenshot.png)
 
 ## Functions
 
