@@ -1,6 +1,7 @@
 <script lang="ts">
 	import AirPollution from '$lib/components/AirPollution.svelte';
 	import CurrentWeather from '$lib/components/CurrentWeather.svelte';
+	import TenDayForecasts from '$lib/components/DayForecasts.svelte';
 	import FeelsLike from '$lib/components/FeelsLike.svelte';
 	import HourlyForecast from '$lib/components/HourlyForecast.svelte';
 	import Humidity from '$lib/components/Humidity.svelte';
@@ -9,7 +10,6 @@
 	import Precipitation from '$lib/components/Precipitation.svelte';
 	import Pressure from '$lib/components/Pressure.svelte';
 	import SunWidget from '$lib/components/SunWidget.svelte';
-	import TenDayForecasts from '$lib/components/TenDayForecasts.svelte';
 	import UvIndex from '$lib/components/UVIndex.svelte';
 	import Visibility from '$lib/components/Visibility.svelte';
 	import Wind from '$lib/components/Wind.svelte';

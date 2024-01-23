@@ -9,10 +9,13 @@ export const DEFAULT_SUGGESTIONS = [
 export const DEFAULT_LOCATION = 'Worthington, OH, USA';
 
 export const WEATHER_API_URL = 'http://api.weatherapi.com/v1/';
-
 export const WEATHER_TILES = [
-  { label: 'Temperature', code: 'temp_new' },
-  { label: 'Precipitation', code: 'precipitation_new' },
-  { label: 'Wind Speed', code: 'wind_new' },
-  { label: 'Clouds', code: 'clouds_new' }
+  { label: 'Temperature', code: 'temperature' },
+  { label: 'Precipitation', code: 'precipitationIntensity' },
+  { label: 'Humidity', code: 'humidity' },
+  { label: 'Wind Speed', code: 'windSpeed' },
+  { label: 'Wind Direction', code: 'windDirection' },
+  { label: 'Pressure', code: 'pressureSurfaceLevel' },
+  { label: 'Visibility', code: 'visibility' },
+  { label: 'Clouds', code: 'cloudCover' },
 ];

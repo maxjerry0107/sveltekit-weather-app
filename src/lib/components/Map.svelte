@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { PUBLIC_MAPBOX_API_KEY, PUBLIC_OPEN_WEATHER_MAP_API_KEY } from '$env/static/public';
+	import { PUBLIC_MAPBOX_API_KEY, PUBLIC_TOMORROW_MAP_API_KEY } from '$env/static/public';
 	import { WEATHER_TILES } from '$lib/constants';
 	import mapboxgl from 'mapbox-gl';
 	import { onDestroy, onMount } from 'svelte';
@@ -24,7 +24,7 @@
 				map.addSource('weather-source', {
 					type: 'raster',
 					tiles: [
-						`https://tile.openweathermap.org/map/${WEATHER_TILES[0].code}/{z}/{x}/{y}.png?appid=${PUBLIC_OPEN_WEATHER_MAP_API_KEY}`
+						`https://api.tomorrow.io/v4/map/tile/{z}/{x}/{y}/${WEATHER_TILES[0].code}/now.png?apikey=${PUBLIC_TOMORROW_MAP_API_KEY}`
 					],
 					tileSize: 256
 				});
@@ -32,6 +32,9 @@
 					id: 'weather-layer',
 					source: 'weather-source',
 					type: 'raster',
+					paint: {
+						'raster-opacity': 0.4
+					},
 					minzoom: 0,
 					maxzoom: 15
 				});
@@ -78,13 +81,13 @@
 		map
 			.getSource('weather-source')
 			.setTiles([
-				`https://tile.openweathermap.org/map/${weatherTile.code}/{z}/{x}/{y}.png?appid=${PUBLIC_OPEN_WEATHER_MAP_API_KEY}`
+				`https://api.tomorrow.io/v4/map/tile/{z}/{x}/{y}/${weatherTile.code}/now.png?apikey=${PUBLIC_TOMORROW_MAP_API_KEY}`
 			]);
 	};
 </script>
 
 <div
-	class="relative order-11 col-span-2 h-[25rem] overflow-hidden overscroll-contain rounded-xl border bg-card p-0 text-card-foreground shadow-sm md:p-0 xl:col-span-3"
+	class="relative order-11 col-span-2 overflow-hidden overscroll-contain rounded-xl border bg-card p-0 text-card-foreground shadow-sm md:p-0 xl:col-span-3"
 >
 	<div class="absolute right-0 z-10 m-2">
 		<div class="relative">
@@ -107,7 +110,7 @@
 			>
 				<ul
 					use:listbox.items
-					class="absolute right-0 z-50 mt-1 max-h-60 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-xs text-popover-foreground shadow-md"
+					class="absolute right-0 z-50 mt-1 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-xs text-popover-foreground shadow-md"
 				>
 					{#each WEATHER_TILES as value, i}
 						{@const active = $listbox.active === value}

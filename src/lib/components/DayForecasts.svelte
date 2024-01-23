@@ -97,7 +97,7 @@
 					/>
 				</svg>
 			</i>
-			10-Day Forecast
+			{forecasts.length}-Day Forecast
 		</div>
 	</div>
 	<div class="space-y-2 text-base font-normal md:mb-1 md:text-lg">
