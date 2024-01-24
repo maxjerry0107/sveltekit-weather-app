@@ -173,3 +173,17 @@ export interface Location {
   localtime_epoch: number;
   localtime: string;
 }
+
+
+export interface MapTileDescriptionDataType {
+  label: string;
+  imagePath: string;
+  values: string[] | number[];
+}
+
+export interface MapTileDescriptionType {
+  label: string;
+  code: string;
+  unit: string;
+  data: MapTileDescriptionDataType[]
+}

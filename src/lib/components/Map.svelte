@@ -2,6 +2,7 @@
 	import { page } from '$app/stores';
 	import { PUBLIC_MAPBOX_API_KEY, PUBLIC_TOMORROW_MAP_API_KEY } from '$env/static/public';
 	import { WEATHER_TILES } from '$lib/constants';
+	import type { MapTileDescriptionType } from '$lib/types';
 	import mapboxgl from 'mapbox-gl';
 	import { onDestroy, onMount } from 'svelte';
 	import { CheckSolid, ChevronDownSolid } from 'svelte-awesome-icons';
@@ -9,9 +10,10 @@
 	import themeStore from 'svelte-themes/themeStore';
 	import Transition from 'svelte-transition';
 	import '../../../node_modules/mapbox-gl/dist/mapbox-gl.css';
+	import MapTileDescription from './MapTileDescription.svelte';
 	let map: mapboxgl.Map;
 	let mapContainer: HTMLDivElement;
-	let selectedMapTile: { label: string; code: string } = WEATHER_TILES[0];
+	let selectedMapTile: MapTileDescriptionType = WEATHER_TILES[0];
 
 	$: if (map) {
 		const mapboxTheme = getMapboxTheme($themeStore.theme);
@@ -34,7 +36,7 @@
 					source: 'weather-source',
 					type: 'raster',
 					paint: {
-						'raster-opacity': 0.6
+						'raster-opacity': 0.4
 					},
 					minzoom: 0,
 					maxzoom: 15
@@ -136,12 +138,8 @@
 			</Transition>
 		</div>
 	</div>
-	<div class="absolute -bottom-1 right-0 z-10 w-1/2">
-		<img
-			src={`weather-map/${selectedMapTile.code}.png`}
-			alt={selectedMapTile.label}
-			class="w-full"
-		/>
+	<div class="absolute bottom-0 right-0 z-10 w-1/2">
+		<MapTileDescription {selectedMapTile} />
 	</div>
 	<div class="map" bind:this={mapContainer} />
 </div>
