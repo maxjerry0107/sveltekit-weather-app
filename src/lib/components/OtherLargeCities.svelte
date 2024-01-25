@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { DEFAULT_SUGGESTIONS } from '$lib/constants';
+	import { encode } from '$lib/utils';
 </script>
 
 <div class="relative order-last hidden h-[25rem] w-full flex-col justify-between lg:block">
@@ -8,7 +9,7 @@
 		{#each DEFAULT_SUGGESTIONS as item}
 			<a
 				data-sveltekit-noscroll
-				href={`/${item}`}
+				href={`/${encode(item)}`}
 				class="rounded-lg border bg-card px-6 py-4 text-card-foreground shadow-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
 			>
 				{item}

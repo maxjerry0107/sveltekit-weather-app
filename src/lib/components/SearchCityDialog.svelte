@@ -1,15 +1,18 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import { PUBLIC_MAPBOX_API_KEY } from '$env/static/public';
-	import { DEFAULT_SUGGESTIONS, MAPBOX_GEOCODING_API_URL } from '$lib/constants';
+	import { PUBLIC_GOOGLE_MAP_API_KEY } from '$env/static/public';
+	import { DEFAULT_SUGGESTIONS } from '$lib/constants';
+	import { encode, loadGooglePlacesLibrary } from '$lib/utils';
 	import { shortcut, type ShortcutEventDetail } from '@svelte-put/shortcut';
 	import debounce from 'lodash.debounce';
+	import { onMount } from 'svelte';
 	import { MagnifyingGlassSolid } from 'svelte-awesome-icons';
 	import { createDialog } from 'svelte-headlessui';
 	import Transition from 'svelte-transition';
 
 	const dialog = createDialog({ label: 'Search City...' });
 
+	let autocomplete: any;
+	let googleLibraryLoaded = false;
 	let searchStr = '';
 	let suggestions: any[] = DEFAULT_SUGGESTIONS;
 	let searchRef: HTMLInputElement;
@@ -24,10 +27,14 @@
 		if (searchStr == '') {
 			suggestions = DEFAULT_SUGGESTIONS;
 		} else {
-			const path = `${MAPBOX_GEOCODING_API_URL}/${searchStr}.json?access_token=${PUBLIC_MAPBOX_API_KEY}&types=place`;
-			const res = await fetch(path);
-			const { features } = await res.json();
-			suggestions = features;
+			if (googleLibraryLoaded) {
+				autocomplete.getPlacePredictions(
+					{ input: target.value, types: ['(cities)'] },
+					(e: any[]) => {
+						suggestions = e;
+					}
+				);
+			}
 		}
 	}, 300);
 
@@ -37,12 +44,19 @@
 		dialog.open();
 	};
 
-	const onSelectCity = async (city: string) => {
+	const onSelectCity = () => {
 		searchRef.value = '';
 		searchStr = '';
 		dialog.close();
-		goto(`/${city}`);
 	};
+
+	onMount(() => {
+		loadGooglePlacesLibrary(PUBLIC_GOOGLE_MAP_API_KEY, async () => {
+			const { AutocompleteService } = await google.maps.importLibrary('places');
+			autocomplete = new AutocompleteService();
+			googleLibraryLoaded = true;
+		});
+	});
 </script>
 
 <svelte:window
@@ -112,14 +126,13 @@
 							<div class="overflow-hidden p-1 text-foreground">
 								<p class="px-2 py-1.5 text-xs font-medium text-muted-foreground">Suggestions</p>
 								{#each suggestions as suggestion}
-									<button
-										on:click={() => {
-											onSelectCity(suggestion.place_name || suggestion);
-										}}
+									<a
+										href={`/${encode(suggestion.description || suggestion)}`}
+										on:click={onSelectCity}
 										class="relative flex w-full cursor-pointer select-none items-center rounded-sm px-2 py-3 text-sm outline-none hover:bg-accent hover:text-accent-foreground"
 									>
-										{suggestion.place_name || suggestion}
-									</button>
+										{suggestion.description || suggestion}
+									</a>
 								{/each}
 							</div>
 						{:else}

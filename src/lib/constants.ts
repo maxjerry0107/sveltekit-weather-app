@@ -2,7 +2,6 @@ import type { MapTileDescriptionType } from "./types";
 
 export const WEATHER_API_URL = 'http://api.weatherapi.com/v1';
 export const WEATHER_MAP_TILE_BASE_URL = 'https://api.tomorrow.io/v4/map/tile/{z}/{x}/{y}';
-export const MAPBOX_GEOCODING_API_URL = 'https://api.mapbox.com/geocoding/v5/mapbox.places'
 
 export const WEATHER_TILES: MapTileDescriptionType[] = [
   {
