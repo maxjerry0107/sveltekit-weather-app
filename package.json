@@ -20,7 +20,6 @@
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@tailwindcss/aspect-ratio": "^0.4.2",
 		"@types/eslint": "8.56.0",
-		"@types/google.maps": "^3.54.10",
 		"@types/mapbox-gl": "^2.7.19",
 		"@typescript-eslint/eslint-plugin": "^6.0.0",
 		"@typescript-eslint/parser": "^6.0.0",

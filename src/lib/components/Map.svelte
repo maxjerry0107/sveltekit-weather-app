@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { PUBLIC_MAPBOX_API_KEY, PUBLIC_TOMORROW_MAP_API_KEY } from '$env/static/public';
+	import { PUBLIC_MAPBOX_API_KEY } from '$env/static/public';
 	import { WEATHER_TILES } from '$lib/constants';
 	import type { MapTileDescriptionType } from '$lib/types';
+	import { getMapboxStyleURL, getTileURL } from '$lib/utils';
 	import mapboxgl from 'mapbox-gl';
 	import { onDestroy, onMount } from 'svelte';
 	import { CheckSolid, ChevronDownSolid } from 'svelte-awesome-icons';
@@ -11,13 +12,14 @@
 	import Transition from 'svelte-transition';
 	import '../../../node_modules/mapbox-gl/dist/mapbox-gl.css';
 	import MapTileDescription from './MapTileDescription.svelte';
+
 	let map: mapboxgl.Map;
 	let mapContainer: HTMLDivElement;
 	let selectedMapTile: MapTileDescriptionType = WEATHER_TILES[0];
 
 	$: if (map) {
 		const mapboxTheme = getMapboxTheme($themeStore.theme);
-		map.setStyle(`mapbox://styles/mapbox/${mapboxTheme}-v11`);
+		map.setStyle(getMapboxStyleURL(mapboxTheme));
 	}
 
 	$: if (map) {
@@ -35,13 +37,19 @@
 		return mapboxTheme;
 	};
 
+	const listbox = createListbox({ label: 'Weather Tiles', selected: WEATHER_TILES[0] });
+
+	const onSelectWeatherTile = (e: Event) => {
+		selectedMapTile = (e as CustomEvent).detail.selected;
+		map.getSource('weather-source').setTiles([getTileURL(selectedMapTile.code)]);
+	};
+
 	onMount(() => {
-		const initialState = { lng: $page.data.location.lon, lat: $page.data.location.lat };
 		map = new mapboxgl.Map({
 			attributionControl: false,
 			container: mapContainer,
 			accessToken: PUBLIC_MAPBOX_API_KEY,
-			center: [initialState.lng, initialState.lat],
+			center: [$page.data.location.lon, $page.data.location.lat],
 			zoom: 7,
 			pitch: 60,
 			bearing: -60
@@ -54,9 +62,7 @@
 			try {
 				map.addSource('weather-source', {
 					type: 'raster',
-					tiles: [
-						`https://api.tomorrow.io/v4/map/tile/{z}/{x}/{y}/${selectedMapTile.code}/now.png?apikey=${PUBLIC_TOMORROW_MAP_API_KEY}`
-					],
+					tiles: [getTileURL(selectedMapTile.code)],
 					tileSize: 256
 				});
 				map.addLayer({
@@ -78,17 +84,6 @@
 	onDestroy(() => {
 		if (map) map.remove();
 	});
-
-	const listbox = createListbox({ label: 'Weather Tiles', selected: WEATHER_TILES[0] });
-
-	const onSelectWeatherTile = (e: Event) => {
-		selectedMapTile = (e as CustomEvent).detail.selected;
-		map
-			.getSource('weather-source')
-			.setTiles([
-				`https://api.tomorrow.io/v4/map/tile/{z}/{x}/{y}/${selectedMapTile.code}/now.png?apikey=${PUBLIC_TOMORROW_MAP_API_KEY}`
-			]);
-	};
 </script>
 
 <div

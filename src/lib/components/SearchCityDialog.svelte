@@ -1,61 +1,42 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { PUBLIC_GOOGLE_MAP_API_KEY } from '$env/static/public';
 	import { DEFAULT_SUGGESTIONS } from '$lib/constants';
-	import { loadGooglePlacesLibrary } from '$lib/utils';
 	import { shortcut, type ShortcutEventDetail } from '@svelte-put/shortcut';
 	import debounce from 'lodash.debounce';
-	import { onMount } from 'svelte';
 	import { MagnifyingGlassSolid } from 'svelte-awesome-icons';
 	import { createDialog } from 'svelte-headlessui';
 	import Transition from 'svelte-transition';
 
 	const dialog = createDialog({ label: 'Search City...' });
-	const onShortcut = (event: ShortcutEventDetail) => {
-		const keyboardEvent = event.originalEvent;
-		keyboardEvent.preventDefault();
-		dialog.open();
-	};
 
-	let autocomplete: any;
-	let googleLibraryLoaded = false;
 	let searchStr = '';
-	let suggestions: any[] = [];
+	let suggestions: any[] = DEFAULT_SUGGESTIONS;
 	let searchRef: HTMLInputElement;
 
 	$: if ($dialog.expanded) {
 		searchRef.focus();
 	}
 
-	const handleInput = debounce((event: Event) => {
+	const handleInput = debounce(async (event: Event) => {
 		const target = event.target as HTMLInputElement;
 		searchStr = target.value;
 		if (searchStr == '') {
-			suggestions = [];
+			suggestions = DEFAULT_SUGGESTIONS;
 		} else {
-			if (googleLibraryLoaded) {
-				autocomplete.getPlacePredictions(
-					{ input: target.value, types: ['(cities)'] },
-					(e: any[]) => {
-						suggestions = e;
-					}
-				);
-			}
+			const res = await fetch(`/api/city?query=${searchStr}`);
+			suggestions = await res.json();
 		}
 	}, 300);
 
-	onMount(() => {
-		loadGooglePlacesLibrary(PUBLIC_GOOGLE_MAP_API_KEY, async () => {
-			const { AutocompleteService } = await google.maps.importLibrary('places');
-			autocomplete = new AutocompleteService();
-			googleLibraryLoaded = true;
-		});
-	});
+	const onShortcut = (event: ShortcutEventDetail) => {
+		const keyboardEvent = event.originalEvent;
+		keyboardEvent.preventDefault();
+		dialog.open();
+	};
 
 	const onSelectCity = async (city: string) => {
 		searchRef.value = '';
 		searchStr = '';
-		suggestions = [];
 		dialog.close();
 		goto(`/${city}`);
 	};
@@ -130,25 +111,11 @@
 								{#each suggestions as suggestion}
 									<button
 										on:click={() => {
-											onSelectCity(suggestion.description);
+											onSelectCity(suggestion.place_name || suggestion);
 										}}
 										class="relative flex w-full cursor-pointer select-none items-center rounded-sm px-2 py-3 text-sm outline-none hover:bg-accent hover:text-accent-foreground"
 									>
-										{suggestion.description}
-									</button>
-								{/each}
-							</div>
-						{:else if searchStr == ''}
-							<div class="overflow-hidden p-1 text-foreground">
-								<p class="px-2 py-1.5 text-xs font-medium text-muted-foreground">Suggestions</p>
-								{#each DEFAULT_SUGGESTIONS as suggestion}
-									<button
-										on:click={() => {
-											onSelectCity(suggestion);
-										}}
-										class="relative flex w-full cursor-pointer select-none items-center rounded-sm px-2 py-3 text-sm outline-none hover:bg-accent hover:text-accent-foreground"
-									>
-										{suggestion}
+										{suggestion.place_name || suggestion}
 									</button>
 								{/each}
 							</div>
