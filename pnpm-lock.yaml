@@ -52,9 +52,6 @@ devDependencies:
   '@types/eslint':
     specifier: 8.56.0
     version: 8.56.0
-  '@types/google.maps':
-    specifier: ^3.54.10
-    version: 3.54.10
   '@types/mapbox-gl':
     specifier: ^2.7.19
     version: 2.7.19
@@ -698,10 +695,6 @@ packages:
 
   /@types/geojson@7946.0.13:
     resolution: {integrity: sha512-bmrNrgKMOhM3WsafmbGmC+6dsF2Z308vLFsQ3a/bT8X8Sv5clVYpPars/UPq+sAaJP+5OoLAYgwbkS5QEJdLUQ==}
-    dev: true
-
-  /@types/google.maps@3.54.10:
-    resolution: {integrity: sha512-N6gwM01mKhooXaw+IKbUH7wJcIJCn8U60VoaVvom5EiQjmfgevhQ+0+/r17beXW5j8ad2x+WPr0iyOUodCw4/w==}
     dev: true
 
   /@types/json-schema@7.0.15:
