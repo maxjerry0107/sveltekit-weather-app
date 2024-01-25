@@ -22,27 +22,6 @@
 
 	$: if (map) {
 		map.setCenter([$page.data.location.lon, $page.data.location.lat]);
-		map.on('style.load', () => {
-			try {
-				map.addSource('weather-source', {
-					type: 'raster',
-					tiles: [
-						`https://api.tomorrow.io/v4/map/tile/{z}/{x}/{y}/${WEATHER_TILES[0].code}/now.png?apikey=${PUBLIC_TOMORROW_MAP_API_KEY}`
-					],
-					tileSize: 256
-				});
-				map.addLayer({
-					id: 'weather-layer',
-					source: 'weather-source',
-					type: 'raster',
-					paint: {
-						'raster-opacity': 0.4
-					},
-					minzoom: 0,
-					maxzoom: 15
-				});
-			} catch (error) {}
-		});
 	}
 
 	const getMapboxTheme = (theme: string | undefined) => {
@@ -70,6 +49,30 @@
 		map.scrollZoom.disable();
 		map.dragPan.disable();
 		map.dragRotate.disable();
+
+		map.on('style.load', () => {
+			try {
+				map.addSource('weather-source', {
+					type: 'raster',
+					tiles: [
+						`https://api.tomorrow.io/v4/map/tile/{z}/{x}/{y}/${selectedMapTile.code}/now.png?apikey=${PUBLIC_TOMORROW_MAP_API_KEY}`
+					],
+					tileSize: 256
+				});
+				map.addLayer({
+					id: 'weather-layer',
+					source: 'weather-source',
+					type: 'raster',
+					paint: {
+						'raster-opacity': 0.4
+					},
+					minzoom: 0,
+					maxzoom: 15
+				});
+			} catch (error) {
+				console.log(error);
+			}
+		});
 	});
 
 	onDestroy(() => {
