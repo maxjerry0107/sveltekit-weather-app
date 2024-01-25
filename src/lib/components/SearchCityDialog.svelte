@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { DEFAULT_SUGGESTIONS } from '$lib/constants';
+	import { PUBLIC_MAPBOX_API_KEY } from '$env/static/public';
+	import { DEFAULT_SUGGESTIONS, MAPBOX_GEOCODING_API_URL } from '$lib/constants';
 	import { shortcut, type ShortcutEventDetail } from '@svelte-put/shortcut';
 	import debounce from 'lodash.debounce';
 	import { MagnifyingGlassSolid } from 'svelte-awesome-icons';
@@ -23,8 +24,10 @@
 		if (searchStr == '') {
 			suggestions = DEFAULT_SUGGESTIONS;
 		} else {
-			const res = await fetch(`/api/city?query=${searchStr}`);
-			suggestions = await res.json();
+			const path = `${MAPBOX_GEOCODING_API_URL}/${searchStr}.json?access_token=${PUBLIC_MAPBOX_API_KEY}&types=place`;
+			const res = await fetch(path);
+			const { features } = await res.json();
+			suggestions = features;
 		}
 	}, 300);
 
