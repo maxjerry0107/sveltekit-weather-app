@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { weatherIconMappings } from '$lib/iconMap';
-	export let weatherCode: number;
+	export let weatherCode: number|string;
 	export let isDay: number;
 	let className: string = '';
 	export { className as class };

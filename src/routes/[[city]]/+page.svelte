@@ -1,7 +1,7 @@
 <script lang="ts">
 	import AirPollution from '$lib/components/AirPollution.svelte';
 	import CurrentWeather from '$lib/components/CurrentWeather.svelte';
-	import TenDayForecasts from '$lib/components/DayForecasts.svelte';
+	import DayForecastsV1 from '$lib/components/DayForecastsV1.svelte';
 	import FeelsLike from '$lib/components/FeelsLike.svelte';
 	import HourlyForecast from '$lib/components/HourlyForecast.svelte';
 	import Humidity from '$lib/components/Humidity.svelte';
@@ -19,12 +19,13 @@
 	$: location = data.location;
 	$: weather = data.current;
 	$: forecasts = data.forecast.forecastday;
+	$: dayForecasts = data.dayForecasts;
 </script>
 
 <div class="flex flex-col gap-4 md:flex-row">
 	<div class="flex w-full min-w-[18rem] flex-col gap-4 md:w-1/3">
 		<CurrentWeather {weather} {location} forecast={forecasts[0]} />
-		<TenDayForecasts {forecasts} />
+		<DayForecastsV1 {dayForecasts} />
 	</div>
 	<section class="grid h-full w-full grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-4">
 		<AirPollution {weather} />

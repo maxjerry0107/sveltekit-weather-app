@@ -2,6 +2,9 @@ import type { MapTileDescriptionType } from "./types";
 
 export const WEATHER_API_URL = 'http://api.weatherapi.com/v1';
 export const WEATHER_MAP_TILE_BASE_URL = 'https://api.tomorrow.io/v4/map/tile/{z}/{x}/{y}';
+export const WEATHER_FORECAST_API_URL = 'https://api.open-meteo.com/v1/forecast?daily=weather_code,temperature_2m_max,temperature_2m_min&forecast_days=10';
+
+export const GOOGLE_GEOCODE_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json';
 
 export const WEATHER_TILES: MapTileDescriptionType[] = [
   {
