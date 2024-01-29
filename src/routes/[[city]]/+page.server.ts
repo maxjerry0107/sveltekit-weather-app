@@ -14,8 +14,6 @@ export const load: PageServerLoad = async ({ fetch, params }) => {
     fetch(`${WEATHER_FORECAST_API_URL}&latitude=${latlng.lat}&longitude=${latlng.lng}`).then(res => res.json())
   ])
   const data: Weather = res[0];
-  const resss = await fetch("https://api.ipify.org?format=json").then(res=>res.json())
-  console.log(resss)
   return {
     current: data.current,
     location: data.location,
