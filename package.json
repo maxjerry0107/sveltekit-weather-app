@@ -52,7 +52,7 @@
 		"@vercel/speed-insights": "^1.0.7",
 		"lodash.debounce": "^4.0.8",
 		"mapbox-gl": "^3.0.1",
-		"svelte-headlessui": "^0.0.33",
-		"svelte-themes": "^1.0.10"
+		"mode-watcher": "^0.2.0",
+		"svelte-headlessui": "^0.0.33"
 	}
 }

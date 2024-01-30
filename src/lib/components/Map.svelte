@@ -5,10 +5,10 @@
 	import type { MapTileDescriptionType } from '$lib/types';
 	import { getMapboxStyleURL, getTileURL } from '$lib/utils';
 	import mapboxgl from 'mapbox-gl';
+	import { mode } from 'mode-watcher';
 	import { onDestroy, onMount } from 'svelte';
 	import { CheckSolid, ChevronDownSolid } from 'svelte-awesome-icons';
 	import { createListbox } from 'svelte-headlessui';
-	import themeStore from 'svelte-themes/themeStore';
 	import Transition from 'svelte-transition';
 	import '../../../node_modules/mapbox-gl/dist/mapbox-gl.css';
 	import MapTileDescription from './MapTileDescription.svelte';
@@ -18,7 +18,7 @@
 	let selectedMapTile: MapTileDescriptionType = WEATHER_TILES[0];
 
 	$: if (map) {
-		const mapboxTheme = getMapboxTheme($themeStore.theme);
+		const mapboxTheme = getMapboxTheme($mode);
 		map.setStyle(getMapboxStyleURL(mapboxTheme));
 	}
 
@@ -28,7 +28,7 @@
 
 	const getMapboxTheme = (theme: string | undefined) => {
 		let mapboxTheme = 'light';
-		if (theme == 'system' || theme == undefined) {
+		if (theme == undefined) {
 			mapboxTheme =
 				window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
 					? 'dark'

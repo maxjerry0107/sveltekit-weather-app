@@ -20,12 +20,12 @@ dependencies:
   mapbox-gl:
     specifier: ^3.0.1
     version: 3.0.1
+  mode-watcher:
+    specifier: ^0.2.0
+    version: 0.2.0(svelte@4.2.8)
   svelte-headlessui:
     specifier: ^0.0.33
     version: 0.0.33
-  svelte-themes:
-    specifier: ^1.0.10
-    version: 1.0.10
 
 devDependencies:
   '@prgm/sveltekit-progress-bar':
@@ -1865,6 +1865,14 @@ packages:
       minimist: 1.2.8
     dev: true
 
+  /mode-watcher@0.2.0(svelte@4.2.8):
+    resolution: {integrity: sha512-NCo72EColWhNjMWXr+U9hjJS6ixCFEADfvj44XFLUWEkR/dsbJxnOX6bkxM+i1DWmP/nRhKI+rr2Z2nt+TZSGA==}
+    peerDependencies:
+      svelte: ^4.0.0
+    dependencies:
+      svelte: 4.2.8
+    dev: false
+
   /mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
     engines: {node: '>=4'}
@@ -2588,10 +2596,6 @@ packages:
       svelte: 4.2.8
       typescript: 5.3.3
     dev: true
-
-  /svelte-themes@1.0.10:
-    resolution: {integrity: sha512-qF3nYlty2ZV2XYPbL6LU7vG0P9zfVFo9v2BC2ah/iV7wDHs31HkNVu/YzOelp3VrckEloUWf/uQu31O7g1klbg==}
-    dev: false
 
   /svelte-transition@0.0.10(svelte@4.2.8):
     resolution: {integrity: sha512-BN8XDA7dKyuh+Lmdn3vxCzJd3M7L4BLdRziIAJew2AiBFMcrJJg8srEMYYoTCOLtYJ2Oqlv3+3/K5b6uHM8LSg==}

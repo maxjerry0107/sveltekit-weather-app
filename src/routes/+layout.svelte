@@ -5,9 +5,9 @@
 	import { ProgressBar } from '@prgm/sveltekit-progress-bar';
 	import { inject } from '@vercel/analytics';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+	import { ModeWatcher } from 'mode-watcher';
 	import { CodeSolid, HeartRegular } from 'svelte-awesome-icons';
 	import { MetaTags } from 'svelte-meta-tags';
-	import SvelteTheme from 'svelte-themes/SvelteTheme.svelte';
 	import '../app.css';
 	inject({ mode: dev ? 'development' : 'production' });
 	injectSpeedInsights();
@@ -19,8 +19,7 @@
 	title={`${location.name} - Weather Forecast`}
 	description={`${location.name} weather forecast with current conditions, wind, air quality, and what to expect for the next 3 days.`}
 />
-
-<SvelteTheme attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange />
+<ModeWatcher track={false} />
 
 <Header />
 <main class="flex-grow">

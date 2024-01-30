@@ -1,28 +1,28 @@
 <script lang="ts">
 	import type { ShortcutEventDetail } from '@svelte-put/shortcut';
 	import { shortcut } from '@svelte-put/shortcut';
+	import { mode, setMode } from 'mode-watcher';
 	import { MoonRegular, SunSolid } from 'svelte-awesome-icons';
 	import { createMenu } from 'svelte-headlessui';
-	import themeStore, { setTheme } from 'svelte-themes/themeStore';
 	import Transition from 'svelte-transition';
 
 	const menu = createMenu({ label: 'Theme' });
 	const onSelectTheme = (e: Event) => {
-		setTheme((e as CustomEvent).detail.selected.toLowerCase());
+		setMode((e as CustomEvent).detail.selected.toLowerCase());
 	};
 	const onToggleTheme = (event: ShortcutEventDetail) => {
 		const keyboardEvent = event.originalEvent;
 		if ((keyboardEvent.target as HTMLElement)?.tagName === 'INPUT') {
 			return;
 		}
-		let currentTheme = $themeStore.theme;
-		if ($themeStore.theme == 'system' || $themeStore.theme == undefined) {
+		let currentTheme = $mode;
+		if ($mode == undefined) {
 			currentTheme =
 				window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
 					? 'dark'
 					: 'light';
 		}
-		setTheme(currentTheme == 'light' ? 'dark' : 'light');
+		setMode(currentTheme == 'light' ? 'dark' : 'light');
 	};
 </script>
 
