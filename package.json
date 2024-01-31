@@ -48,8 +48,6 @@
 	"type": "module",
 	"dependencies": {
 		"@types/lodash.debounce": "^4.0.9",
-		"@vercel/analytics": "^1.1.2",
-		"@vercel/speed-insights": "^1.0.9",
 		"lodash.debounce": "^4.0.8",
 		"mapbox-gl": "^3.1.2",
 		"mode-watcher": "^0.2.0",

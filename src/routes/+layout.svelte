@@ -1,16 +1,11 @@
 <script lang="ts">
-	import { dev } from '$app/environment';
 	import { page } from '$app/stores';
 	import Header from '$lib/components/Header.svelte';
 	import { ProgressBar } from '@prgm/sveltekit-progress-bar';
-	import { inject } from '@vercel/analytics';
-	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 	import { ModeWatcher } from 'mode-watcher';
 	import { CodeSolid, HeartRegular } from 'svelte-awesome-icons';
 	import { MetaTags } from 'svelte-meta-tags';
 	import '../app.css';
-	inject({ mode: dev ? 'development' : 'production' });
-	injectSpeedInsights();
 	$: location = $page.data.location;
 </script>
 
