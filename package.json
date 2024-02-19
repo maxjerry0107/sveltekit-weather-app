@@ -22,7 +22,7 @@
 		"@types/eslint": "8.56.2",
 		"@types/mapbox-gl": "^2.7.20",
 		"@typescript-eslint/eslint-plugin": "^7.0.0",
-		"@typescript-eslint/parser": "^6.20.0",
+		"@typescript-eslint/parser": "^6.21.0",
 		"autoprefixer": "^10.4.17",
 		"clsx": "^2.1.0",
 		"eslint": "^8.56.0",
