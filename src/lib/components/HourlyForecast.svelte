@@ -4,6 +4,11 @@
 	import WeatherIcon from './WeatherIcon.svelte';
 
 	export let hourlyData: HourWeather[] = [];
+	const hourToAmPm = (hours: number)=>{
+		var AmOrPm = hours >= 12 ? 'pm' : 'am';
+		hours = (hours % 12) || 12;
+		return hours + AmOrPm
+	}
 </script>
 
 <div
@@ -13,7 +18,7 @@
 	{#each hourlyData as item, index}
 		<div class="flex h-full flex-col justify-between">
 			<div class="flex justify-center text-sm text-neutral-600 dark:text-neutral-400">
-				{index}
+				{hourToAmPm(index)}
 			</div>
 			<div class="flex h-full items-center justify-center">
 				<WeatherIcon weatherCode={item.condition.code} isDay={1} class="h-8 w-8" />
