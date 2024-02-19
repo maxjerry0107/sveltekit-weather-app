@@ -21,15 +21,15 @@
 		"@tailwindcss/aspect-ratio": "^0.4.2",
 		"@types/eslint": "8.56.2",
 		"@types/mapbox-gl": "^2.7.20",
-		"@typescript-eslint/eslint-plugin": "^6.20.0",
-		"@typescript-eslint/parser": "^6.20.0",
+		"@typescript-eslint/eslint-plugin": "^7.0.0",
+		"@typescript-eslint/parser": "^6.21.0",
 		"autoprefixer": "^10.4.17",
 		"clsx": "^2.1.0",
 		"eslint": "^8.56.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.35.1",
-		"postcss": "^8.4.33",
-		"prettier": "^3.2.4",
+		"postcss": "^8.4.35",
+		"prettier": "^3.2.5",
 		"prettier-plugin-svelte": "^3.1.2",
 		"prettier-plugin-tailwindcss": "^0.5.11",
 		"svelte": "^4.2.9",
@@ -50,7 +50,7 @@
 		"@types/lodash.debounce": "^4.0.9",
 		"lodash.debounce": "^4.0.8",
 		"mapbox-gl": "^3.1.2",
-		"mode-watcher": "^0.2.0",
+		"mode-watcher": "^0.2.1",
 		"svelte-headlessui": "^0.0.33"
 	}
 }
