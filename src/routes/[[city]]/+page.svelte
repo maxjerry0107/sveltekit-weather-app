@@ -37,7 +37,7 @@
 		<Humidity humidity={weather.humidity} />
 		<Visibility visibility={weather.vis_km} />
 		<Pressure pressure={weather.pressure_mb} />
-		<HourlyForecast hourlyData={forecasts[0].hour} />
+		<HourlyForecast hourlyData={forecasts[0].hour} timeZone={location.tz_id} />
 		<Map />
 		<OtherLargeCities />
 	</section>
