@@ -2,7 +2,9 @@ import type { MapTileDescriptionType } from "./types";
 
 export const WEATHER_API_URL = 'http://api.weatherapi.com/v1';
 export const WEATHER_MAP_TILE_BASE_URL = 'https://api.tomorrow.io/v4/map/tile/{z}/{x}/{y}';
-export const WEATHER_FORECAST_API_URL = 'https://api.open-meteo.com/v1/forecast?daily=weather_code,temperature_2m_max,temperature_2m_min&forecast_days=10';
+export const WEATHER_FORECAST_API_BASE_URL = 'https://api.open-meteo.com/v1/forecast';
+export const WEATHER_10DAYS_FORECAST_API_URL = `${WEATHER_FORECAST_API_BASE_URL}?daily=weather_code,temperature_2m_max,temperature_2m_min&forecast_days=10`;
+export const WEATHER_2DAYS_FORECAST_HOURLY_API_URL = `${WEATHER_FORECAST_API_BASE_URL}?hourly=temperature_2m,weather_code&forecast_days=2`;
 
 export const GOOGLE_GEOCODE_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json';
 

@@ -3,7 +3,7 @@
 	import CurrentWeather from '$lib/components/CurrentWeather.svelte';
 	import DayForecastsV1 from '$lib/components/DayForecastsV1.svelte';
 	import FeelsLike from '$lib/components/FeelsLike.svelte';
-	import HourlyForecast from '$lib/components/HourlyForecast.svelte';
+	import HourlyForecastV1 from '$lib/components/HourlyForecastV1.svelte';
 	import Humidity from '$lib/components/Humidity.svelte';
 	import Map from '$lib/components/Map.svelte';
 	import OtherLargeCities from '$lib/components/OtherLargeCities.svelte';
@@ -20,6 +20,7 @@
 	$: weather = data.current;
 	$: forecasts = data.forecast.forecastday;
 	$: dayForecasts = data.dayForecasts;
+	$: twoDayHourlyForecasts = data.twoDayHourlyForecasts;
 </script>
 
 <div class="flex flex-col gap-4 md:flex-row">
@@ -37,7 +38,7 @@
 		<Humidity humidity={weather.humidity} />
 		<Visibility visibility={weather.vis_km} />
 		<Pressure pressure={weather.pressure_mb} />
-		<HourlyForecast hourlyData={forecasts[0].hour} timeZone={location.tz_id} />
+		<HourlyForecastV1 twoDayHourlyForecasts={twoDayHourlyForecasts} timeZone={location.tz_id} />
 		<Map />
 		<OtherLargeCities />
 	</section>
